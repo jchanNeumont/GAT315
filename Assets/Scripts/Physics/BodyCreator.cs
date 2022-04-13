@@ -3,40 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BodyCreator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+public class BodyCreator : MonoBehaviour
 {
-    [SerializeField] Body bodyPrefab;
+	[SerializeField] Body bodyPrefab;
+	[SerializeField] FloatData speed;
+	[SerializeField] FloatData size;
+	[SerializeField] FloatData density;
+	[SerializeField] FloatData drag;
+	[SerializeField] EnumData bodyType;
+
 	bool action = false;
 	bool pressed = false;
-	float timer = 0;
 
-    void Update()
+	void Update()
 	{
-        if (action)
-        {
-            Vector3 position = Simulator.Instance.GetScreenToWorldPosition(Input.mousePosition);
+		if (action && (pressed || Input.GetKey(KeyCode.LeftControl)))
+		{
+			pressed = false;
 
-            Body body = Instantiate(bodyPrefab, position, Quaternion.identity);
-            body.ApplyForce(Random.insideUnitCircle.normalized);
+			Vector3 position = Simulator.Instance.GetScreenToWorldPosition(Input.mousePosition);
 
-            Simulator.Instance.bodies.Add(body);
-        }
+			Body body = Instantiate(bodyPrefab, position, Quaternion.identity);
+			body.bodyType = (Body.eBodyType)bodyType.value;
+			body.shape.size = size.value;
+			body.shape.density = density.value;
+			body.drag = drag.value;
+
+			body.ApplyForce(Random.insideUnitCircle.normalized * speed.value, Body.eForceMode.Velocity);
+
+			Simulator.Instance.bodies.Add(body);
+		}
 	}
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        action = true;
-        pressed = true;
-    }
+	public void OnPointerDown()
+	{
+		action = true;
+		pressed = true;
+	}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        action = false;
-    }
+	public void OnPointerExit()
+	{
+		action = false;
+	}
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        action = false;
-    }
-
+	public void OnPointerUp()
+	{
+		action = false;
+	}
 }
