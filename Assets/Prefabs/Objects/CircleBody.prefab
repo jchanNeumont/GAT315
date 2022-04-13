@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2589836799303630419}
   - component: {fileID: 2522225913210151860}
+  - component: {fileID: 6062623742162388720}
   - component: {fileID: 8426073666877820211}
   m_Layer: 0
   m_Name: CircleBody
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.30980393}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,6 +84,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6062623742162388720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321866036125767192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a394b17785e9bef4882e6d1763aa2caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8426073666877820211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02661e1b06e94f54b97fe50dea91786c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shape: {fileID: 6062623742162388720}
