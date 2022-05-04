@@ -20,7 +20,7 @@ public class UIButton : MonoBehaviour
 		}
 	}
 
-	private void Awake()
+	/*private void Awake()
 	{
 		button.onClick.AddListener(OnEvent);
 	}
@@ -28,5 +28,5 @@ public class UIButton : MonoBehaviour
 	private void OnEvent()
 	{
 		_event.Notify();
-	}
+	}*/
 }

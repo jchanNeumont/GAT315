@@ -11,6 +11,7 @@ public class BodyCreator : MonoBehaviour
 	[SerializeField] FloatData density;
 	[SerializeField] FloatData drag;
 	[SerializeField] EnumData bodyType;
+	[SerializeField] FloatData restitution;
 
 	bool action = false;
 	bool pressed = false;
@@ -28,6 +29,7 @@ public class BodyCreator : MonoBehaviour
 			body.shape.size = size.value;
 			body.shape.density = density.value;
 			body.drag = drag.value;
+			body.restitution = restitution.value;
 
 			body.ApplyForce(Random.insideUnitCircle.normalized * speed.value, Body.eForceMode.Velocity);
 
@@ -37,8 +39,12 @@ public class BodyCreator : MonoBehaviour
 
 	public void OnPointerDown()
 	{
-		action = true;
-		pressed = true;
+        if (Input.GetMouseButton(0))
+        {
+			action = true;
+			pressed = true;
+        }
+
 	}
 
 	public void OnPointerExit()
